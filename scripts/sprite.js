@@ -28,21 +28,21 @@ class sprite {
     };
 
     update_types = {
-        "updateX": () => {
+        updateX: () => {
             this.current_frame_x = ++this.current_frame_x % this.cols;
             this.src_x = this.current_frame_x * this.frame_width;
         },
-        "updateY": (angle) => {
+        updateY: (angle) => {
             this.current_frame_y = angle;
             this.src_y = angle * this.frame_height;
         },
 
-        "hero": (mouse) => {
+        hero: (mouse) => {
 
-            this.update_types["updateX"]();
+            this.update_types.updateX();
 
             if (mouse.moving) {
-                this.update_types["updateY"](mouse.angle);
+                this.update_types.updateY(mouse.angle);
             }
         }
     };
