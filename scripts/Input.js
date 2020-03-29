@@ -10,12 +10,19 @@ let inputListeners = {
     keydown: (e) => {
         switch (e.keyCode) {
             case 87:
-                heroState = "walking";
+                heroState = (heroReady ? "readyWalk" : "walking");
                 break;
-            case 82:
+            case 69:
+                heroReady = !heroReady;
                 break;
             case 83:
                 heroState = "running";
+                break;
+            case 81:
+                // q,
+                break;
+            case 67:
+                // c,
                 break;
             default:
                 break;
@@ -23,17 +30,7 @@ let inputListeners = {
         console.log(e.keyCode);
     },
     keyup: (e) => {
-        switch (e.keyCode) {
-            case 82:
-                heroReady = !heroReady;
-                break;
-            default:
-                break;
-        }
-        if (heroReady)
-            heroState = "attackStance";
-        else
-            heroState = "standing";
+        heroState = (heroReady ? "readyStance" : "standing");
     }
 
 }
