@@ -7,19 +7,25 @@ let inputListeners = {
         mouse.moving = true;
         mouse.cords = getMousePos(canvas, e)
     },
+    // On key is pressed
     keydown: (e) => {
-        switch (e.keyCode) {
+        switch (e.keycode) {
             case 87:
-                heroState = (heroReady ? "readyWalk" : "walking");
+                hero.state = ((hero.ready && !hero.inction) ? "readywalk" : "walking");
                 break;
             case 69:
-                heroReady = !heroReady;
+                hero.ready = !hero.ready;
                 break;
             case 83:
-                heroState = "running";
+                if (!hero.inaction)
+                    hero.state = "running";
                 break;
             case 81:
-                // q,
+                if (hero.ready && hero.state !== "attack_1" && !hero.InAction) {
+                    hero.inAction = true;
+                    hero.PreviousState = hero.State;
+                    hero.state = "attack_1";
+                }
                 break;
             case 67:
                 // c,
@@ -27,10 +33,10 @@ let inputListeners = {
             default:
                 break;
         }
-        console.log(e.keyCode);
     },
+    // on key is released
     keyup: (e) => {
-        heroState = (heroReady ? "readyStance" : "standing");
+        hero.State = (hero.InAction ? "attack_1" : (hero.Ready ? "readyStance" : "standing"));
     }
 
 }
