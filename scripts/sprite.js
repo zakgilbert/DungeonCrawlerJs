@@ -31,6 +31,14 @@ class sprite {
         updateX: () => {
             this.current_frame_x = ++this.current_frame_x % this.cols;
             this.src_x = this.current_frame_x * this.frame_width;
+
+            let checkFrame = this.cols - 1;
+
+            if (hero.inAction && this.current_frame_x === checkFrame) {
+                hero.inAction = false;
+                hero.state = hero.previousState;
+                hero.previousState = "";
+            }
         },
         updateY: (angle) => {
             this.current_frame_y = angle;
