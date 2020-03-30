@@ -20,21 +20,11 @@ function initiateInputListeners(hero) {
                         hero.state = "running";
                     break;
                 case 81:
-                    if (hero.ready && (hero.state !== "attack_1" || hero.state !== "attack_2")
-                        && !hero.inAction) {
-                        hero.inAction = true;
-                        hero.previousState = hero.state;
-                        hero.state = "attack_1";
-                    }
+                    heroAttackHelper("attack_1", "attack_2");
                     break;
                 case 67:
-                    if (hero.ready && (hero.state !== "attack_1" || hero.state !== "attack_2")
-                        && !hero.inAction) {
-                        hero.inAction = true;
-                        hero.previousState = hero.state;
-                        hero.state = "attack_2";
-                        break;
-                    }
+                    heroAttackHelper("attack_2", "attack_1");
+                    break;
                 default:
                     break;
             }
@@ -45,4 +35,18 @@ function initiateInputListeners(hero) {
                 (hero.ready ? "readyStance" : "standing"));
         }
     }
+}
+/**
+ * Check if hero is in ready stance and not currently in atk1 or atk2, if so then begin atk1. 
+ * @param {""} atk1 -string
+ * @param {""} atk2 -string
+ */
+function heroAttackHelper(atk1, atk2) {
+    if (hero.ready && (hero.state !== atk1 || hero.state !== atk2)
+        && !hero.inAction) {
+        hero.inAction = true;
+        hero.previousState = hero.state;
+        hero.state = atk1;
+    }
+
 }

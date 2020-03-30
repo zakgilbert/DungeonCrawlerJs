@@ -55,8 +55,6 @@ class Sprite {
         }
     };
 
-
-
     po() {
         console.log(this);
     }
@@ -67,7 +65,6 @@ class Sprite {
     update(x) {
         this.update_types[this.type](x);
     }
-
 
     animate(ctx, mouse) {
         this.update(mouse);

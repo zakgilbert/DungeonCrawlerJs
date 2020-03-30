@@ -23,16 +23,18 @@ canvas.addEventListener("mousemove", inputListeners.mousemove, false);
 window.addEventListener("keydown", inputListeners.keydown, false);
 window.addEventListener("keyup", inputListeners.keyup, false);
 
-
-
 setInterval(() => {
     ctx.clearRect(0, 0, WIDTH, HEIGHT);
     mouse.angle = getMouseAngle(mouse.cords, hero.getCurrentSprite());
     hero.getCurrentSprite().animate(ctx, mouse);
 
-    let curr = hero.getCurrentSprite();;
+    colors(hero.getCurrentSprite());
+
+}, 60);
+
+
+function colors(curr) {
     ctx.fillStyle = "#FF0000";
     ctx.fillRect(getRectangleMid(curr.x, curr.frame_width), getRectangleMid(curr.y, curr.frame_height), 5, 5);
     ctx.fillRect(mouse.x, mouse.y, 5, 5);
-
-}, 60);
+}
