@@ -20,23 +20,29 @@ function initiateInputListeners(hero) {
                         hero.state = "running";
                     break;
                 case 81:
-                    if (hero.ready && hero.state !== "attack_1" && !hero.inAction) {
+                    if (hero.ready && (hero.state !== "attack_1" || hero.state !== "attack_2")
+                        && !hero.inAction) {
                         hero.inAction = true;
                         hero.previousState = hero.state;
                         hero.state = "attack_1";
                     }
-                    // q,
                     break;
                 case 67:
-                    // c,
-                    break;
+                    if (hero.ready && (hero.state !== "attack_1" || hero.state !== "attack_2")
+                        && !hero.inAction) {
+                        hero.inAction = true;
+                        hero.previousState = hero.state;
+                        hero.state = "attack_2";
+                        break;
+                    }
                 default:
                     break;
             }
         },
         keyup: (e) => {
-            hero.state = (hero.inAction ? 
-                "attack_1" : (hero.ready ? "readyStance" : "standing"));
+            hero.state = (hero.inAction ?
+                (hero.state === "attack_1" ? "attack_1" : "attack_2") :
+                (hero.ready ? "readyStance" : "standing"));
         }
     }
 }

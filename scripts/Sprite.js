@@ -1,5 +1,5 @@
 
-class sprite {
+class Sprite {
     constructor(x, y, w, h, rows, cols, path, type) {
         this.x = x;
         this.y = y;
